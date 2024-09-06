@@ -1,3 +1,3 @@
-# Data Sttructures Problems Random
+# Data Structures Problems Random
 
 
