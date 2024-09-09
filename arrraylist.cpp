@@ -59,6 +59,10 @@ public:
     {
         return length == size ? true : false;
     };
+    bool inIndex(int pos)
+    {
+        return pos > 1 || pos <= length + 1 ? true : false;
+    };
 
     void add(int value)
     {
@@ -67,13 +71,8 @@ public:
             cout << "Array is Full" << endl;
             return;
         }
-        else if(length == 0){
-            *array = value;
-            ++length;
-        }
         else{
             tail();
-            next();
             *(current) = value;
             ++length;
         }
@@ -99,12 +98,13 @@ public:
             cout << "Array is Full" << endl;
             return;
         }
-        if (pos < 0 || pos >= length + 1)
+        if (!inIndex(pos))
         {
             cout << "Out of Index" << endl;
             return;
         }
         tail();
+        // back();
         for (int i = length; i > pos; i--)
         {
             *(current) = *(current - 1);
@@ -115,7 +115,7 @@ public:
     };
     void update(int value, int pos)
     {
-        if (pos < 0 || pos > length)
+        if (!inIndex(pos))
         {
             cout << "Out of Index" << endl;
             return;
@@ -169,24 +169,25 @@ int main()
     myarra.print();
 
     myarra.add(1);
-    myarra.add(3);
+    myarra.add(2);
+    myarra.add(3); 
     myarra.print();
 
-    // myarra.insert(0, 0);
+    myarra.insert(0, 1);
     // myarra.insert(2, 2);
-    // myarra.print();
+    myarra.print();
 
-    // myarra.update(4, 0);
-    // myarra.print();
+    myarra.update(4, 0);
+    myarra.print();
     // myarra.remove(0);
-    // myarra.remove(1);
-    // myarra.print();
+    myarra.remove(1);
+    myarra.print();
     // cout << myarra.get();
 
-    // Array a2(4);
-    // a2.copy(myarra);
-    // a2.print();
-    // cout << a2.find(3);
+    Array a2(4);
+    a2.copy(myarra);
+    a2.print();
+    cout << a2.find(3);
 
     return 0;
 }
